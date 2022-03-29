@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/jfmrm/grpc-loadbalancer-benchmark;grpc_loadbalancer_benchmark";
+option go_package = "github.com/jfmrm/grpc-loadbalancer-benchmark/helloworld";
 
 service HelloService {
   rpc SayHello(HelloRequest) returns (HelloReply) {}
