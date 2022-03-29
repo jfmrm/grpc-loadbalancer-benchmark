@@ -1,8 +1,9 @@
-module server
+module grpc-load-balancer-benchmark
 
 go 1.18
 
 require (
+	github.com/jfmrm/grpc-loadbalancer-benchmark v0.0.0-20220329114644-bf554f16209f
 	google.golang.org/grpc v1.45.0
 	google.golang.org/protobuf v1.28.0
 )
