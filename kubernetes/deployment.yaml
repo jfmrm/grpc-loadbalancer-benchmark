@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '2112'
+    spec:
+      containers:
+      - name: server
+        image: ghcr.io/jfmrm/benchmark-server:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "1"
+        ports:
+        - containerPort: 50051
+        - containerPort: 2112
