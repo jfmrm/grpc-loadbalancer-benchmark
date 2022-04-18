@@ -12,6 +12,7 @@ import (
 	"syscall"
 
 	pb "github.com/jfmrm/grpc-loadbalancer-benchmark/helloworld"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"google.golang.org/grpc"
 )
@@ -20,14 +21,21 @@ type server struct {
 	pb.UnimplementedHelloServiceServer
 }
 
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello " + in.GetName()}, nil
-}
-
 var (
 	port        = flag.Int("port", 50051, "The server port")
 	metricsPort = flag.Int("metrics-port", 2112, "The metrics port")
+	latencyHist = prometheus.NewHistogram(prometheus.HistogramOpts{
+		Name:    "say_world_latency",
+		Help:    "Histogram of processing latency of the say hello grpc method.",
+		Buckets: prometheus.DefBuckets,
+	})
 )
+
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	timer := prometheus.NewTimer(latencyHist)
+	defer timer.ObserveDuration()
+	return &pb.HelloReply{Message: "Hello " + in.GetName()}, nil
+}
 
 func main() {
 	flag.Parse()
@@ -51,6 +59,7 @@ func main() {
 	}()
 
 	go func() {
+		prometheus.MustRegister(latencyHist)
 		log.Printf("Starting metrics server on port %d", *metricsPort)
 		http.Handle("/metrics", promhttp.Handler())
 		http.ListenAndServe(":2112", nil)
