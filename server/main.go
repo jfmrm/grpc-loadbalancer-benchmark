@@ -25,7 +25,7 @@ var (
 	port        = flag.Int("port", 50051, "The server port")
 	metricsPort = flag.Int("metrics-port", 2112, "The metrics port")
 	latencyHist = prometheus.NewHistogram(prometheus.HistogramOpts{
-		Name:    "say_world_latency",
+		Name:    "say_hello_latency",
 		Help:    "Histogram of processing latency of the say hello grpc method.",
 		Buckets: prometheus.DefBuckets,
 	})
