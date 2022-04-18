@@ -17,6 +17,7 @@ spec:
       containers:
       - name: server
         image: ghcr.io/jfmrm/benchmark-server:latest
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "256Mi"
