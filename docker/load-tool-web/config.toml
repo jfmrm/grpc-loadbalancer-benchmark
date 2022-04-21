@@ -1,0 +1,10 @@
+[server]
+port = 80   # the port for the http server
+
+[database]  # the database options
+type = "postgres"
+connection = "host=ghz-web-db user=postgres dbname=ghz sslmode=disable password=postgres"
+
+[log]
+level = "info"          # log level
+path = "/tmp/ghz.log"   # the path to log file, otherwize stdout is used
