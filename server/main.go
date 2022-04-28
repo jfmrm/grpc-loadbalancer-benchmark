@@ -29,11 +29,16 @@ var (
 		Help:    "Histogram of processing latency of the say hello grpc method.",
 		Buckets: prometheus.DefBuckets,
 	})
+	requestCounter = prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "say_hello_req_count",
+		Help: "Counter to cont requests.",
+	})
 )
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	timer := prometheus.NewTimer(latencyHist)
 	defer timer.ObserveDuration()
+	requestCounter.Inc()
 	return &pb.HelloReply{Message: "Hello " + in.GetName()}, nil
 }
 
@@ -60,6 +65,7 @@ func main() {
 
 	go func() {
 		prometheus.MustRegister(latencyHist)
+		prometheus.MustRegister(requestCounter)
 		log.Printf("Starting metrics server on port %d", *metricsPort)
 		http.Handle("/metrics", promhttp.Handler())
 		http.ListenAndServe(":2112", nil)
