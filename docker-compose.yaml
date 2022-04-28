@@ -13,4 +13,4 @@ services:
     volumes:
       - ./docker/ghz:/configs
       - ./helloworld:/helloworld
-    command: "--config=/configs/step-down.json"
+    command: "--config=/configs/step-down.json server:50051"

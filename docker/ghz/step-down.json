@@ -21,6 +21,5 @@
         "/helloworld"
     ],
     "max-duration": "10s",
-    "host": "server:50051",
     "insecure": true
 }
