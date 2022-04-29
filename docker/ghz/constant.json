@@ -1,7 +1,6 @@
 {
     "proto": "helloworld.proto",
     "call": "HelloService.SayHello",
-    "total": 10000,
     "concurrency": 10,
     "rps": 200,
     "async": true,
@@ -16,6 +15,6 @@
     "import-paths": [
         "/helloworld"
     ],
-    "max-duration": "10s",
+    "max-duration": "5m",
     "insecure": true
 }
