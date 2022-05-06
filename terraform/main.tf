@@ -13,7 +13,8 @@ module "vpc" {
     private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
     public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
-    enable_nat_gateway = false
+    enable_nat_gateway = true
+    single_nat_gateway = true
     enable_vpn_gateway = false
 
     tags = var.tags
@@ -45,12 +46,9 @@ module "eks" {
             desired_size = 3
 
             instance_types = ["t3.large"]
-            capacity_type  = "SPOT"
+            capacity_type  = "ON_DEMAND"
         }
     }
-
-    # aws-auth configmap
-    manage_aws_auth_configmap = true
 
     aws_auth_users = [
         {
