@@ -13,3 +13,20 @@ spec:
     port: 2112
     targetPort: 2112
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-headless
+spec:
+  selector:
+    app: server
+  ports:
+  - name: grpc-server
+    port: 50051
+    targetPort: 50051
+  - name: metrics
+    port: 2112
+    targetPort: 2112
+  type: ClusterIP
+  clusterIP: None
