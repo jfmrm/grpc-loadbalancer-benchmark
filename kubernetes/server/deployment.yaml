@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: server
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: server
@@ -14,6 +15,13 @@ spec:
         prometheus.io/scrape: 'true'
         prometheus.io/port: '2112'
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app: server
       containers:
       - name: server
         image: ghcr.io/jfmrm/benchmark-server:latest
