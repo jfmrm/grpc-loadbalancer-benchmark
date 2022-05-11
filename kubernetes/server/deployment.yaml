@@ -27,6 +27,9 @@ spec:
         image: ghcr.io/jfmrm/benchmark-server:latest
         imagePullPolicy: Always
         resources:
+          requests:
+            memory: "256Mi"
+            cpu: "1"
           limits:
             memory: "256Mi"
             cpu: "1"
