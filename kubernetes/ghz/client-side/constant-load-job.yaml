@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: constant-load
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: ghz
+        image: ghcr.io/jfmrm/ghz:latest
+        command: ["ghz", "--config=/ghz/config/constant.json", "--lb-strategy=round_robin", "dns:///server-headless:50051"]
+      restartPolicy: OnFailure
