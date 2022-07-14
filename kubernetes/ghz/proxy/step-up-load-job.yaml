@@ -9,5 +9,5 @@ spec:
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
-        command: ["ghz", "--config=/ghz/config/step-up.json", "server:50051"]
+        command: ["ghz", "--config=/ghz/config/constant.json", "45.55.106.187.nip.io:80"]
       restartPolicy: OnFailure
