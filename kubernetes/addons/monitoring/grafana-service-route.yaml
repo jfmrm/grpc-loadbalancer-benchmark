@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: server
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`grafana.45.55.106.187.nip.io`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: monitoring-grafana
+          port: http-web
+          kind: Service
+          scheme: http
