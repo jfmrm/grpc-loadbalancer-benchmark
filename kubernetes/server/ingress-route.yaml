@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`45.55.106.187.nip.io`) && PathPrefix(`/`)
+    - match: Host(`server.45.55.106.187.nip.io`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: server-proxy
