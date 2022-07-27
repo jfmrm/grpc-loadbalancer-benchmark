@@ -3,11 +3,18 @@ kind: Job
 metadata:
   name: constant-load
 spec:
-  ttlSecondsAfterFinished: 100
+  ttlSecondsAfterFinished: 1000
   template:
     spec:
+      volumes:
+      - name: output
+        persistentVolumeClaim:
+          claimName: ghz
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
-        command: ["ghz", "--config=/ghz/config/constant.json", "45.55.106.187.nip.io:80"]
+        command: ["ghz", "--config=/ghz/config/constant.json", "--output=/results/proxy/constant-load.html", "--format=html" ,"server.45.55.106.187.nip.io:80"]
+        volumeMounts:
+        - name: output
+          mountPath: /results/proxy
       restartPolicy: OnFailure

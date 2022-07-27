@@ -1,13 +1,20 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: step-up-load
+  name: step-down-load
 spec:
   ttlSecondsAfterFinished: 100
   template:
     spec:
+      volumes:
+      - name: output
+        persistentVolumeClaim:
+          claimName: ghz
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
-        command: ["ghz", "--config=/ghz/config/step-up.json", "--lb-strategy=round_robin", "dns:///server-headless:50051"]
+        command: ["ghz", "--config=/ghz/config/step-down.json", "--lb-strategy=round_robin", "--output=/results/client-side/step-down-cslb.html", "--format=html", "dns:///server-headless:50051"]
+        volumeMounts:
+        - name: output
+          mountPath: /results/client-side
       restartPolicy: OnFailure
