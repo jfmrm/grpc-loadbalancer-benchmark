@@ -1,4 +1,4 @@
-autoscaling:
-  enabled: true
-  minReplicas: 3
-  maxReplicas: 5
+# autoscaling:
+#   enabled: true
+#   minReplicas: 3
+#   maxReplicas: 5
