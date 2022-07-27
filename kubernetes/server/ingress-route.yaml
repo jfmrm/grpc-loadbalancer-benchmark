@@ -9,7 +9,7 @@ spec:
     - match: Host(`server.45.55.106.187.nip.io`) && PathPrefix(`/`)
       kind: Rule
       services:
-        - name: server-proxy
+        - name: server-headless
           port: 50051
           kind: Service
           scheme: h2c
