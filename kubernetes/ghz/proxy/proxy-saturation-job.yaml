@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: saturation
+spec:
+  ttlSecondsAfterFinished: 1000
+  template:
+    spec:
+      volumes:
+      - name: output
+        persistentVolumeClaim:
+          claimName: ghz
+      containers:
+      - name: ghz
+        image: ghcr.io/jfmrm/ghz:latest
+        command: ["ghz", "--config=/ghz/config/proxy-saturation.json", "--output=/results/proxy/proxy-saturation-private-ip.html", "--format=html" ,"server.10.245.79.157.nip.io:80"]
+        volumeMounts:
+        - name: output
+          mountPath: /results/proxy
+      restartPolicy: OnFailure

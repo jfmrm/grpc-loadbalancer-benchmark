@@ -1,0 +1,23 @@
+{
+    "proto": "helloworld.proto",
+    "call": "HelloService.SayHello",
+    "concurrency": 10,
+    "async": true,
+    "load-schedule": "step",
+    "load-start": 600,
+    "load-step": 300,
+    "load-step-duration": "2m",
+    "data": {
+        "name": "{{.WorkerID}}"
+    },
+    "metadata": {
+        "foo": "bar",
+        "trace_id": "{{.RequestNumber}}",
+        "timestamp": "{{.TimestampUnix}}"
+    },
+    "import-paths": [
+        "/helloworld"
+    ],
+    "max-duration": "30m",
+    "insecure": true
+}
