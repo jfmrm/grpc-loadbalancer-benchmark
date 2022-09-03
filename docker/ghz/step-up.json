@@ -4,9 +4,9 @@
     "concurrency": 10,
     "async": true,
     "load-schedule": "step",
-    "load-start": 150,
-    "load-step": 10,
-    "load-step-duration": "5s",
+    "load-start": 200,
+    "load-step": 100,
+    "load-step-duration": "60s",
     "data": {
         "name": "{{.WorkerID}}"
     },
