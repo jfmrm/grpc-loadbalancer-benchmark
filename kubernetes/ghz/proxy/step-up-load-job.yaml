@@ -13,7 +13,7 @@ spec:
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
-        command: ["ghz", "--config=/ghz/config/step-up.json", "--output=/results/proxy/step-up-private-ip.html", "--format=html" ,"server.10.245.79.157.nip.io:80"]
+        command: ["ghz", "--config=/ghz/config/step-up.json", "--output=/results/proxy/step-up-private-ip.html", "--format=html" ,"server.11.0.212.161.nip.io:80"]
         volumeMounts:
         - name: output
           mountPath: /results/proxy

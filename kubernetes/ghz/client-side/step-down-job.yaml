@@ -13,6 +13,7 @@ spec:
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
+        imagePullPolicy: Always
         command: ["ghz", "--config=/ghz/config/step-down.json", "--lb-strategy=round_robin", "--output=/results/client-side/step-down-cslb.html", "--format=html", "dns:///server-headless:50051"]
         volumeMounts:
         - name: output

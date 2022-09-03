@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`grafana.45.55.106.187.nip.io`) && PathPrefix(`/`)
+    - match: Host(`grafana.35.185.97.219.nip.io`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: monitoring-grafana

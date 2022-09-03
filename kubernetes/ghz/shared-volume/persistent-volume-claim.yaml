@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: ghz
 spec:
-  storageClassName: do-block-storage-xfs-retain
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
