@@ -13,7 +13,7 @@ spec:
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
-        command: ["ghz", "--config=/ghz/config/constant.json", "--lb-strategy=round_robin", "--output=/results/client-side/constant-load-cslb-700.html", "--format=html", "--rps=700", "dns:///server-headless:50051"]
+        command: ["ghz", "--config=/ghz/config/constant.json", "--lb-strategy=round_robin", "--output=/results/client-side/constant-load-cslb-1500.html", "--rps=1500", "--format=html", "dns:///server-headless:50051"]
         volumeMounts:
         - name: output
           mountPath: /results/client-side

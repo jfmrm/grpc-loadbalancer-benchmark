@@ -13,7 +13,7 @@ spec:
       containers:
       - name: ghz
         image: ghcr.io/jfmrm/ghz:latest
-        command: ["ghz", "--config=/ghz/config/constant.json", "--output=/results/proxy/constant-load-private-ip.html", "--rps=700","--format=html" ,"server.11.0.212.161.nip.io:80"]
+        command: ["ghz", "--config=/ghz/config/constant.json", "--output=/results/proxy/constant-load-private-ip-1500.html", "--rps=1500","--format=html" ,"server.11.0.212.161.nip.io:80"]
         volumeMounts:
         - name: output
           mountPath: /results/proxy
