@@ -4,9 +4,9 @@
     "concurrency": 10,
     "async": true,
     "load-schedule": "step",
-    "load-start": 700,
-    "load-step": -100,
-    "load-step-duration": "60s",
+    "load-start": 1500,
+    "load-step": -500,
+    "load-step-duration": "2m",
     "data": {
         "name": "{{.WorkerID}}"
     },
@@ -18,6 +18,6 @@
     "import-paths": [
         "/helloworld"
     ],
-    "max-duration": "5m",
+    "max-duration": "6m",
     "insecure": true
 }

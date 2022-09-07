@@ -2,7 +2,7 @@
     "proto": "helloworld.proto",
     "call": "HelloService.SayHello",
     "concurrency": 10,
-    "rps": 200,
+    "rps": 500,
     "async": true,
     "data": {
         "name": "{{.WorkerID}}"
@@ -15,6 +15,6 @@
     "import-paths": [
         "/helloworld"
     ],
-    "max-duration": "5m",
+    "max-duration": "6m",
     "insecure": true
 }
