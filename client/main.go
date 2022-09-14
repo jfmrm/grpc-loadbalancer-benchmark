@@ -22,10 +22,12 @@ func PrettyPrint(v interface{}) (err error) {
 
 func main() {
 	e := flag.String("experiments", "", "list of experiment files separated by comma")
+	format := flag.String("format", "html", "format in which ghz will output results")
 
 	flag.Parse()
 
 	experiments := strings.Split(*e, ",")
+	fmt.Printf("Output format: %s", *format)
 
 	PrettyPrint(experiments)
 
@@ -47,14 +49,14 @@ func main() {
 
 		fName := strings.Split(e, ".")[0]
 
-		f, _ := os.Create(fmt.Sprintf("/results/%s.csv", fName))
+		f, _ := os.Create(fmt.Sprintf("/results/%s.%s", fName, *format))
 
 		printer := printer.ReportPrinter{
 			Out:    f,
 			Report: report,
 		}
 
-		printer.Print("csv")
+		printer.Print(*format)
 
 		f.Close()
 
