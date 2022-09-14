@@ -1,0 +1,27 @@
+{
+    "name": "client-side-step-up",
+    "proto": "helloworld.proto",
+    "call": "HelloService.SayHello",
+    "lb-strategy": "round_robin",
+    "concurrency": 10,
+    "async": true,
+    "load-schedule": "step",
+    "host": "dns:///server-headless:50051",
+    "format": "csv",
+    "load-start": 500,
+    "load-step": 500,
+    "load-step-duration": "2m",
+    "data": {
+        "name": "{{.WorkerID}}"
+    },
+    "metadata": {
+        "foo": "bar",
+        "trace_id": "{{.RequestNumber}}",
+        "timestamp": "{{.TimestampUnix}}"
+    },
+    "import-paths": [
+        "/helloworld"
+    ],
+    "max-duration": "6m",
+    "insecure": true
+}

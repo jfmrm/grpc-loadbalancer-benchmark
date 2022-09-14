@@ -1,0 +1,24 @@
+{
+    "name": "client-side-constant-1000",
+    "proto": "helloworld.proto",
+    "call": "HelloService.SayHello",
+    "lb-strategy": "round_robin",
+    "format": "csv",
+    "host": "dns:///server-headless:50051",
+    "concurrency": 10,
+    "rps": 1000,
+    "async": true,
+    "data": {
+        "name": "{{.WorkerID}}"
+    },
+    "metadata": {
+        "foo": "bar",
+        "trace_id": "{{.RequestNumber}}",
+        "timestamp": "{{.TimestampUnix}}"
+    },
+    "import-paths": [
+        "/helloworld"
+    ],
+    "max-duration": "6m",
+    "insecure": true
+}

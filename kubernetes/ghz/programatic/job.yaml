@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ghz-programatic
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      volumes:
+      - name: output
+        persistentVolumeClaim:
+          claimName: ghz
+      - name: configs
+        configMap:
+          name: ghz-configs
+      containers:
+      - name: ghz
+        image: ghcr.io/jfmrm/ghz-client:latest
+        command:
+          - ./client-bin
+        args:
+        - --experiments
+        - client-side-constant-500.json,client-side-constant-1000.json,client-side-constant-1500.json,client-side-step-down.json,client-side-step-up.json,proxy-constant-500.json,proxy-constant-1000.json,proxy-constant-1500.json,proxy-step-down.json,proxy-step-up.json
+        volumeMounts:
+        - name: output
+          mountPath: /results
+        - name: configs
+          mountPath: /configs
+      restartPolicy: Never

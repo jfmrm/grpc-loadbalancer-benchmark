@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: superset
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`superset.35.185.97.219.nip.io`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: superset
+          port: 8088
+          kind: Service
+          scheme: http

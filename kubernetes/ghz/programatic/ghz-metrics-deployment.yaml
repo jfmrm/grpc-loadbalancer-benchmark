@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghz-client-metrics
+spec:
+  selector:
+    matchLabels:
+      app: ghz-client-metrics
+  template:
+    metadata:
+      labels:
+        app: ghz-client-metrics
+    spec:
+      volumes:
+        - name: ghz
+          persistentVolumeClaim:
+            claimName: ghz
+      containers:
+      - name: ghz-client-metrics
+        image: nginx:1.22.0-alpine
+        args:
+          - --experiments
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: ghz
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        ports:
+        - containerPort: 80

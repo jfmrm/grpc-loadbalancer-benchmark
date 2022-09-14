@@ -1,0 +1,41 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    release: monitoring
+  name: ghz-client-metrics
+spec:
+  endpoints:
+  - path: /client-side-constant-500.txt
+    targetPort: 80
+    scheme: http
+  - path: /client-side-constant-1000.txt
+    targetPort: 80
+    scheme: http
+  - path: /client-side-constant-1500.txt
+    targetPort: 80
+    scheme: http
+  - path: /client-side-step-up.txt
+    targetPort: 80
+    scheme: http
+  - path: /client-side-step-down.txt
+    targetPort: 80
+    scheme: http
+  - path: /proxy-constant-500.txt
+    targetPort: 80
+    scheme: http
+  - path: /proxy-constant-1000.txt
+    targetPort: 80
+    scheme: http
+  - path: /proxy-constant-1500.txt
+    targetPort: 80
+    scheme: http
+  - path: /proxy-step-up.txt
+    targetPort: 80
+    scheme: http
+  - path: /proxy-step-down.txt
+    targetPort: 80
+    scheme: http
+  selector:
+    matchLabels:
+      svc: ghz-metrics

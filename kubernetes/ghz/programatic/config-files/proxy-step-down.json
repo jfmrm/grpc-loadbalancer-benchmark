@@ -1,0 +1,26 @@
+{
+    "name": "proxy-step-down",
+    "proto": "helloworld.proto",
+    "call": "HelloService.SayHello",
+    "concurrency": 10,
+    "async": true,
+    "load-schedule": "step",
+    "host": "server.11.0.212.161.nip.io:80",
+    "format": "csv",
+    "load-start": 1500,
+    "load-step": -500,
+    "load-step-duration": "2m",
+    "data": {
+        "name": "{{.WorkerID}}"
+    },
+    "metadata": {
+        "foo": "bar",
+        "trace_id": "{{.RequestNumber}}",
+        "timestamp": "{{.TimestampUnix}}"
+    },
+    "import-paths": [
+        "/helloworld"
+    ],
+    "max-duration": "6m",
+    "insecure": true
+}
